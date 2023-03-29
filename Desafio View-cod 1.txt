@@ -1,0 +1,72 @@
+
+
+create table employee(
+  id_employee int PRIMARY key,
+  fname varchar,
+  cpf int,
+  id_employee_departament int,
+  sex char(2),
+  salary double
+  )
+   
+   
+  create table departament(
+    id_departament int PRIMARY key,
+    dname varchar,
+    dnumber int,
+    mgr_ssn varchar,
+    mgr_date date,
+    id_departament_Employer intm
+    id_departaments_locations int,
+    CONSTRAINT fk_departament_Employer FOREIGN key(departament_Employer) REFERENCES employee(  id_departament_Employer)
+   
+  )
+  
+create table dep_locations(
+  id_dep_location int PRIMARY key,
+  dnumber int PRIMARYkey,
+  dlocation int,
+  CONSTRAINT fk_dep_location_departament FOREIGN key( dlocation) REFERENCES departament(id_departaments_locations)
+
+)
+
+create table project(
+  id_project int PRIMARY key,
+  pname varchar,
+  pnumber int,
+  plocation varchar,
+  dnum int
+)
+
+create table works_on (
+  essn int primary KEY,
+  pno varchar,
+  hours int
+)
+
+
+create table dependent (
+  essn int PRIMARY key,
+  dependent_name varchar,
+  sex char(2),
+  bdate date
+)
+
+
+
+
+
+•	Número de empregados por departamento e localidade 
+
+create VIEW n_empregados_local as SELECT id_employee_departament
+from  employee
+UNION
+SELECT  id_departaments_locations 
+from departament
+
+•	Lista de departamentos e seus gerentes 
+
+create VIEW departamenos_gerentes as   select dname,mgr_ssn
+from  departament
+
+
